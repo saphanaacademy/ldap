@@ -11,7 +11,7 @@ In the first video, the concepts of LDAP as it relates to SAP HANA authorization
 
 ## Create LDAP Provider ##
 
-You need to configure a connection to the LDAP server in SAP HANA by creating an LDAP provider in the SAP HANA (tenant) database with the CREATE LDAP PROVIDER or ALTER LDAP PROVIDER statements.
+To configure a connection to an LDAP server in SAP HANA, you need to create an LDAP provider in the (tenant) database with the CREATE LDAP PROVIDER or ALTER LDAP PROVIDER statements.
 
 Access to the LDAP server takes place using an LDAP server user with permission to perform searches as specified by the user look-up URL. The credential of this user is stored in the secure internal credential store.
 
