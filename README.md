@@ -18,16 +18,21 @@ Access to the LDAP server takes place using an LDAP server user with permission 
 Communication between SAP HANA and the LDAP server can be secured using the TLS/SSL protocol or Secure LDAP protocol (LDAPS).
 ```
 CREATE LDAP PROVIDER my_ldap_provider
-  CREDENTIAL TYPE 'PASSWORD' USING 'user=CN=MyTechnicalUser,CN=Users,DC=MyDC,DC=LOCAL;password=Password1'
-  USER LOOKUP URL 'ldap://server.domain:389/CN=Users,DC=MyDC,DC=LOCAL??sub?(&(objectClass=user)(sAMAccountName=*))'
+  CREDENTIAL TYPE 'PASSWORD' 
+  USING 'user=CN=MyTechnicalUser,CN=Users,DC=MyDC,DC=LOCAL;password=Password1'
+  USER LOOKUP URL 
+   'ldap://server.domain:389/CN=Users,DC=MyDC,DC=LOCAL??sub?(&(objectClass=user)(sAMAccountName=*))'
   ATTRIBUTE DN 'distinguishedName'
   ATTRIBUTE MEMBER_OF 'memberOf';
   
--- you need to enable a provider before it can be used (can be included in the CREATE statement)
+-- you need to enable a provider before it can be used 
+-- (can be included in the CREATE statement)
 ALTER LDAP PROVIDER my_ldap_provider
   ENABLE PROVIDER;
 
--- when not using LDAPS (USER LOOKUP URL), SSL should be used to secure network traffic between the LDAP and SAP HANA server. 
+-- To secure (encrypt) network traffic (passwords!) between LDAP and HANA 
+-- consider using ldaps:// in the user lookup URL
+-- or enable SSL (requires configuration, see documentation link below) 
 ALTER LDAP PROVIDER my_ldap_provider
   SSL ON;
 
@@ -35,7 +40,7 @@ ALTER LDAP PROVIDER my_ldap_provider
 ALTER LDAP PROVIDER my_ldap_provider
   DEFAULT ON;
 ```  
-You can query the and system views for the configuration of LDAP providers and LOOKUP URLs. 
+You can query the LDAP_PROVIDERS and LDAP_PROVIDER_URLS system views for the configuration of LDAP providers and LOOKUP URLs. 
 ```  
 SELECT * FROM LDAP_PROVIDERS;
 SELECT * FROM LDAP_PROVIDER_URLS;
