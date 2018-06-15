@@ -132,7 +132,7 @@ VALIDATE LDAP PROVIDER my_ldap_provider CHECK USER CREATION FOR LDAP USER UserC
 ```
 
 ### Tutorial Video ### 
-
+[![LDAP - User Authentication](https://img.youtube.com/vi/IpIvOV1HKzs/0.jpg)](https://www.youtube.com/watch?v=IpIvOV1HKzs "LDAP - User Authentication")
 
 ### Documentation ### 
 * [LDAP User Authentication](https://help.sap.com/viewer/b3ee5778bc2e4a089d3299b82ec762a7/latest/en-US/868f8b988e2d42ccb89ccaf263cd9986.html)
